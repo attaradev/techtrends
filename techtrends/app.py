@@ -87,7 +87,14 @@ def create():
 # Define healthz endpoint
 @app.route('/healthz')
 def healthz():
-    return {'result': 'OK - healthy'}
+    try:
+        connection = get_db_connection()
+        connection.cursor()
+        connection.execute('SELECT * FROM posts')
+        connection.close()
+        return {'result': 'OK - healthy'}
+    except Exception:
+        return {'result': 'ERROR - unhealthy'}, 500
 
 
 # Define metrics endpoint
