@@ -27,5 +27,11 @@ spec:
       - image: mikeattara/{{ .Values.image.repository }}:{{ .Values.image.tag }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         name: techtrends
+        readinessProbe:
+          httpGet:
+            path: {{ .Values.readinessProbe.path }}
+        livenessProbe:
+          httpGet:
+            path: {{ .Values.livenessProbe.path }}
         resources:
 {{ toYaml .Values.resources | indent 12 }}
