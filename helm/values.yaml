@@ -1,18 +1,18 @@
 namespace:
   name: sandbox
 
+service:
+  port: 4111
+  targetPort: 3111
+  protocol: TCP
+  type: ClusterIP
+
 image:
   repository: techtrends
   tag: latest
   pullPolicy: IfNotPresent
 
 replicaCount: 1
-
-service:
-  port: 4111
-  targetPort: 3111
-  protocol: TCP
-  type: ClusterIP
 
 resources:
   requests:
