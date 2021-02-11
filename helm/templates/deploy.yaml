@@ -27,6 +27,8 @@ spec:
       - image: mikeattara/{{ .Values.image.repository }}:{{ .Values.image.tag }}
         imagePullPolicy: {{ .Values.image.pullPolicy }}
         name: techtrends
+        ports:
+        - containerPort: {{ .Values.containerPort }}
         readinessProbe:
           httpGet:
             path: {{ .Values.readinessProbe.path }}
